@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomSearchViewStyle">
+        <item name="colorControlNormal">@color/white</item>
+        <item name="android:textColorHint">@android:color/darker_gray</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+    </style>
+    <style name="MyCardViewStyle" parent="Theme.AppCompat.Light">
+        <item name="cardBackgroundColor">@color/transparent</item>
+        <item name="fontFamily">@font/open_sans_normal</item>
+        <item name="cardElevation">0dp</item>
+    </style>
+
+    <style name="TextStyle">
+        <item name="fontFamily">@font/open_sans_normal</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="apiTextStyle">
+        <item name="fontFamily">@font/open_sans_normal</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+
+</resources>

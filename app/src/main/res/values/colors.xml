@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="search_color">#807299BB</color>
+    <color name="hint_color">#E0E0E0</color>
+    <color name="transparent">#00000000</color>
+    <color name="card_shadow">#4005327F</color>
+    <color name="recycler_back">#427CD9</color>
+    <color name="cardColor">#1F67DC</color>
+    <color name="hintColor">#E0E0E0</color>
+    <color name="search2">#E0E0E0</color>
+    <color name="hint2">#302B2B</color>
+</resources>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Моя погода</string>
+    <string name="weather_api_key">481dd569d8244f34a0682715251602</string>
+</resources>
