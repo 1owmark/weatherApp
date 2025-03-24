@@ -58,5 +58,5 @@ dependencies {
     implementation(libs.androidx.cardview)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.core.splashscreen)
-
+    implementation(libs.play.services.location)
 }

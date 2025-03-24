@@ -78,6 +78,8 @@ class MyLocationsActivity : AppCompatActivity() {
         searchViewCity.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()) {
+                    editor.putFloat("latitude", 0.0F).apply()
+                    editor.putFloat("longitude", 0.0F).apply()
                     editor.putString("current_city", query)
                     editor.apply()
 

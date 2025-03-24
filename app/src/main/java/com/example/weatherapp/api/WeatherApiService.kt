@@ -4,11 +4,6 @@ import retrofit2.http.Query
 
 
 interface WeatherApiService {
-    @GET("v1/current.json") // Это часть URL, которая добавляется к базовому адресу API
-    suspend fun getCurrentWeather(
-        @Query("key") apiKey: String,  // API-ключ (нужен для авторизации)
-        @Query("q") location: String,  // Город или координаты (широта, долгота)
-    ): WeatherResponse
 
     @GET("v1/forecast.json")
     suspend fun getForecast(

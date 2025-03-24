@@ -129,10 +129,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         sharedPreferences = getSharedPreferences("User_Prefs", MODE_PRIVATE)
-        val savedCity = sharedPreferences.getString("current_city", "Москва") // По умолчанию Москва
+        val savedCity = sharedPreferences.getString("current_city", "Москва")
 
-        if (!savedCity.isNullOrEmpty()) {
-            loadWeather(savedCity) // Метод для запроса погоды
+        val latitude = sharedPreferences.getFloat("latitude", 0.0F)
+        val longitude = sharedPreferences.getFloat("latitude", 0.0F)
+
+        if (latitude != 0.0F && longitude != 0.0F) {
+            // Используем координаты для запроса
+            loadWeather(latitude = latitude, longitude = longitude)
+        } else {
+            // Используем сохраненный город или город по умолчанию
+            loadWeather(savedCity)
         }
     }
 
@@ -163,11 +170,16 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun loadWeather(city: String) {
+    private fun loadWeather(city: String? = null, latitude: Float? = null, longitude: Float? = null) {
         val apiKey = getString(R.string.weather_api_key)
+        val locationQuery = if (latitude != null && longitude != null) {
+            "$latitude,$longitude" // Формат "широта,долгота"
+        } else {
+            city ?: "Москва"
+        }
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val response = RetrofitInstance.api.getForecast(apiKey, city, days = 3)
+                val response = RetrofitInstance.api.getForecast(apiKey, locationQuery, days = 3)
 
                 withContext(Dispatchers.Main) {
                     updateUI(response)

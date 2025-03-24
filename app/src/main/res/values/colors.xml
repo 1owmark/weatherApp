@@ -11,4 +11,6 @@
     <color name="hintColor">#E0E0E0</color>
     <color name="search2">#E0E0E0</color>
     <color name="hint2">#302B2B</color>
+    <color name="switch_off_color">#9DC4FF</color>
+    <color name="switch_on_color">#2E63FF</color>
 </resources>
