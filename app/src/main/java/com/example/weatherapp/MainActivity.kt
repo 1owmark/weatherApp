@@ -135,10 +135,8 @@ class MainActivity : AppCompatActivity() {
         val longitude = sharedPreferences.getFloat("latitude", 0.0F)
 
         if (latitude != 0.0F && longitude != 0.0F) {
-            // Используем координаты для запроса
             loadWeather(latitude = latitude, longitude = longitude)
         } else {
-            // Используем сохраненный город или город по умолчанию
             loadWeather(savedCity)
         }
     }
@@ -222,11 +220,11 @@ class MainActivity : AppCompatActivity() {
         determineTheWeather(condition.code)
 
         val dailyWeatherList = forecastDays.mapIndexed { index, forecastDay ->
-            val date = forecastDay.date // Дата (например, "2023-10-11")
-            val dayOfWeek = if (index == 0) "Сегодня" else getDayOfWeek(date) // День недели
-            val dayTemp = forecastDay.day.maxTempC.toInt() // Дневная температура
-            val nightTemp = forecastDay.day.minTempC.toInt() // Ночная температура
-            val icon = getWeatherIcon(forecastDay.day.condition.code) // Иконка для дня
+            val date = forecastDay.date //
+            val dayOfWeek = if (index == 0) "Сегодня" else getDayOfWeek(date)
+            val dayTemp = forecastDay.day.maxTempC.toInt()
+            val nightTemp = forecastDay.day.minTempC.toInt()
+            val icon = getWeatherIcon(forecastDay.day.condition.code)
 
             NextDaysWeather(
                 date = formatDate(date),
@@ -341,8 +339,6 @@ class MainActivity : AppCompatActivity() {
 
         // Добавляем данные на следующий день
         val combinedForecast = filteredTodayForecast + tomorrowForecast
-
-        Log.d("WeatherData", "Combined Forecast: $combinedForecast")
         return combinedForecast
     }
 

@@ -123,7 +123,6 @@ class SelectCityActivity : AppCompatActivity() {
                 val cityName = locationHelper.getCityFromLocation(this, location)
                 if (cityName != null) {
                     sharedPreferences.edit().putString("current_city", cityName).apply()
-                    Toast.makeText(this, "Город: $cityName", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this, "Не удалось определить город", Toast.LENGTH_SHORT).show()
                 }

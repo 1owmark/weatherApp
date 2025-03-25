@@ -13,4 +13,5 @@
     <color name="hint2">#302B2B</color>
     <color name="switch_off_color">#9DC4FF</color>
     <color name="switch_on_color">#2E63FF</color>
+    <color name="app_background">#257ADB</color>
 </resources>

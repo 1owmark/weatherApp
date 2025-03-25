@@ -1,6 +1,7 @@
 package com.example.weatherapp
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -19,6 +20,7 @@ class OptionsActivity : AppCompatActivity() {
     private lateinit var btnBack: ImageButton
     private lateinit var switchLocation: SwitchCompat
     private lateinit var locationHelper: LocationHelper
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +35,7 @@ class OptionsActivity : AppCompatActivity() {
         btnBack = findViewById(R.id.btnBack)
         switchLocation = findViewById(R.id.locationSwitch)
         locationHelper = LocationHelper(this)
+        sharedPreferences = getSharedPreferences("User_Prefs", MODE_PRIVATE)
 
         switchLocation.thumbDrawable = ContextCompat.getDrawable(this, R.drawable.custom_thumb)
         switchLocation.trackDrawable = ContextCompat.getDrawable(this, R.drawable.switch_track)

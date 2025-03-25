@@ -39,8 +39,8 @@ class LocationHelper(private val context: Context) {
     fun getCurrentLocation(onSuccess: (Location) -> Unit, onFailure: (Exception) -> Unit) {
         if (checkLocationPermission()) {
             val locationRequest = com.google.android.gms.location.LocationRequest.Builder(
-                com.google.android.gms.location.Priority.PRIORITY_HIGH_ACCURACY, 5000
-            ).setMinUpdateIntervalMillis(2000)
+                com.google.android.gms.location.Priority.PRIORITY_HIGH_ACCURACY, 1000
+            ).setMinUpdateIntervalMillis(500)
                 .build()
 
             val locationCallback = object : com.google.android.gms.location.LocationCallback() {
