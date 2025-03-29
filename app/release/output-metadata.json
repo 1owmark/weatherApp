@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.example.weatherapp",
+  "applicationId": "com.skyline.myweather",
   "variantName": "release",
   "elements": [
     {

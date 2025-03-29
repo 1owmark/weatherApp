@@ -78,9 +78,8 @@ class MyLocationsActivity : AppCompatActivity() {
         searchViewCity.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()) {
-                    // Сохраняем город, но не меняем логику определения местоположения
                     editor.putString("current_city", query)
-                        .putBoolean("is_manual_city", true) // Добавляем флаг ручного выбора
+                    //    .putBoolean("is_manual_city", true)
                         .apply()
 
                     val intent = Intent(this@MyLocationsActivity, MainActivity::class.java)

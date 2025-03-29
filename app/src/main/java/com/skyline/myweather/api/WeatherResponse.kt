@@ -28,10 +28,10 @@ data class CurrentWeather(
     @SerializedName("condition") val condition: Condition // Описание погоды
 )
 
-// Условия погоды (ясно, облачно и т.д.)
+// Состояние погоды
 data class Condition(
     @SerializedName("icon") val icon: String, // Иконка погоды
-    @SerializedName("code") val code: Int
+    @SerializedName("code") val code: Int // Код погоды
 )
 
 // Прогноз погоды на текущий день и следующие 3 дня

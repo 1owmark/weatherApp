@@ -6,8 +6,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitInstance {
     val api: WeatherApiService by lazy {
         Retrofit.Builder()
-            .baseUrl("https://api.weatherapi.com/") // Базовый URL для всех запросов
-            .addConverterFactory(GsonConverterFactory.create()) // Конвертер JSON -> Kotlin
+            .baseUrl("https://api.weatherapi.com/")
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(WeatherApiService::class.java)
     }

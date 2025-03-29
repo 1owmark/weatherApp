@@ -384,11 +384,10 @@ class MainActivity : AppCompatActivity() {
             withContext(Dispatchers.Main) {
                 when {
                     currentCity != null -> {
-                        // 2. Если есть временный город - используем его
                         loadWeather(currentCity)
                     }
                     else -> {
-                        // 3. Если ничего нет - проверяем локацию
+                        // Если ничего нет - проверяем локацию
                         checkLocationPermissionOrRedirect()
                     }
                 }
