@@ -64,6 +64,5 @@ class OptionsActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         switchLocation.isChecked = locationHelper.checkLocationPermission()
-
     }
 }

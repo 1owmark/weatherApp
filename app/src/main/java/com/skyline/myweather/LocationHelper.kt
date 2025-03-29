@@ -23,18 +23,6 @@ class LocationHelper(private val context: Context) {
                 ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
     }
 
-    // Запрос разрешений на доступ к геолокации
-    fun requestLocationPermission(activity: AppCompatActivity, requestCode: Int) {
-        ActivityCompat.requestPermissions(
-            activity,
-            arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ),
-            requestCode
-        )
-    }
-
     // Получение текущего местоположения
     fun getCurrentLocation(onSuccess: (Location) -> Unit, onFailure: (Exception) -> Unit) {
         if (checkLocationPermission()) {

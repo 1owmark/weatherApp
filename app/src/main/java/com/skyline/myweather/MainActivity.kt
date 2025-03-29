@@ -149,9 +149,7 @@ class MainActivity : AppCompatActivity() {
                 // Разрешение получено - получаем локацию
                 getCurrentLocationAndLoadWeather()
             } else {
-                // Разрешение не получено - переходим к выбору города
                 startActivity(Intent(this, SelectCityActivity::class.java))
-                finish()
             }
         }
     }
@@ -168,8 +166,6 @@ class MainActivity : AppCompatActivity() {
                     if (existingCity == null) {
                         cityViewModel.insert(favoriteCity)
                         isFavorite = true
-                        // Очищаем временный город при добавлении в избранное
-                        sharedPreferences.edit().remove("current_city").apply()
                         Toast.makeText(this@MainActivity, "Город добавлен в избранное", Toast.LENGTH_SHORT).show()
                     } else {
                         cityViewModel.delete(existingCity)
@@ -383,16 +379,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkForSavedCitiesOrRedirect() {
         CoroutineScope(Dispatchers.IO).launch {
-            val favoriteCities = cityViewModel.allCities.value
             val currentCity = sharedPreferences.getString("current_city", null)
 
             withContext(Dispatchers.Main) {
                 when {
-                    !favoriteCities.isNullOrEmpty() -> {
-                        // 1. Приоритет - последний город из БД
-                        val lastFavoriteCity = favoriteCities.last().cityName
-                        loadWeather(lastFavoriteCity)
-                    }
                     currentCity != null -> {
                         // 2. Если есть временный город - используем его
                         loadWeather(currentCity)
