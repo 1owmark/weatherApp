@@ -402,19 +402,8 @@ class MainActivity : AppCompatActivity() {
             getCurrentLocationAndLoadWeather()
         } else {
             // Запрашиваем разрешение
-            requestLocationPermission()
+            locationHelper.requestLocationPermission(this)
         }
-    }
-
-    private fun requestLocationPermission() {
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ),
-            LOCATION_PERMISSION_REQUEST_CODE
-        )
     }
 
     private fun getCurrentLocationAndLoadWeather() {

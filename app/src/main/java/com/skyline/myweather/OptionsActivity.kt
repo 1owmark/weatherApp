@@ -2,6 +2,7 @@ package com.skyline.myweather
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -45,11 +46,12 @@ class OptionsActivity : AppCompatActivity() {
         switchLocation.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 if (!locationHelper.checkLocationPermission()) {
-                    openAppSettings()
+                    locationHelper.requestLocationPermission(this)
+                } else {
+                    getLocationAndSaveCity()
                 }
             } else {
-                // При отключении геолокации просто сохраняем состояние,
-                // MainActivity будет обрабатывать это при следующем запуске
+                openAppSettings()
             }
         }
     }
@@ -65,4 +67,35 @@ class OptionsActivity : AppCompatActivity() {
         super.onResume()
         switchLocation.isChecked = locationHelper.checkLocationPermission()
     }
+
+    private fun getLocationAndSaveCity() {
+        locationHelper.getCurrentLocation(
+            onSuccess = { location ->
+                val cityName = locationHelper.getCityFromLocation(this, location)
+                if (cityName != null) {
+                    val prefs = getSharedPreferences("User_Prefs", MODE_PRIVATE)
+                    prefs.edit().putString("current_city", cityName).apply()
+
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            },
+            onFailure = {
+                switchLocation.isChecked = false // Если не удалось получить локацию
+            }
+        )
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == LocationHelper.LOCATION_PERMISSION_REQUEST_CODE) {
+            if (grantResults.isNotEmpty() && grantResults.any { it == PackageManager.PERMISSION_GRANTED }) {
+                getLocationAndSaveCity()
+            } else {
+                switchLocation.isChecked = false
+            }
+        }
+    }
+
 }
